@@ -533,6 +533,23 @@ export default {
         GRADE: "Grade System",
       },
     },
+    FIND_JOBS: {
+      FIND_JOBS: {
+        FILTER: {
+          COUNTRY: "Country",
+          CITY: "City",
+          JOB_ROLE: "Job Role",
+          SPECIALTY: "Specialty",
+          INDUSTRY: "Industry",
+          CAREER_LEVEL: "Career Level",
+          EMPLOYMENT_TYPE: "Employment Type",
+          GENDER: "Gender",
+          COMPANY_TYPE: "Company Type",
+          COMPANY_NAME: "Company Name",
+          DATE_MODIFIED: "Date Modified",
+        },
+      },
+    },
     MY_CV: {
       MY_CV: {
         SECTIONS: {

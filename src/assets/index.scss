@@ -293,11 +293,11 @@ textarea.form-control {
   //-webkit-text-stroke-width: 2px;
 }
 
-.h3-response {
+.h3-responsive {
   font-size: 1.75rem;
 }
 
-.h5-response {
+.h5-responsive {
   font-size: 1.15rem;
 }
 
@@ -308,11 +308,11 @@ textarea.form-control {
 }
 
 @media (max-width: $screen-breakpoint-md) {
-  .h3-response {
+  .h3-responsive {
     font-size: 1.5rem;
   }
 
-  .h5-response {
+  .h5-responsive {
     font-size: 1rem;
   }
 }

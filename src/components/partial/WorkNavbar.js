@@ -58,7 +58,7 @@ const WorkNavbar = (props) => {
                 <span className="mr-2">{t("NAVBAR.WORK.FIND_JOBS.ROOT")}</span>
               </MDBDropdownToggle>
               <MDBDropdownMenu className="text-left">
-                <MDBDropdownItem onClick={() => onNavigate(routes.work.findJobs.findJobs)}>{t("NAVBAR.WORK.FIND_JOBS.FIND_JOBS")}</MDBDropdownItem>
+                <MDBDropdownItem onClick={() => onNavigate(routes.work.findJobs.findJobs.root)}>{t("NAVBAR.WORK.FIND_JOBS.FIND_JOBS")}</MDBDropdownItem>
                 <MDBDropdownItem onClick={() => onNavigate(routes.work.findJobs.recommendedJobs)}>{t("NAVBAR.WORK.FIND_JOBS.RECOMMENDED_JOBS")}</MDBDropdownItem>
                 <MDBDropdownItem onClick={() => onNavigate(routes.work.findJobs.savedJobs)}>{t("NAVBAR.WORK.FIND_JOBS.SAVED_JOBS")}</MDBDropdownItem>
                 <MDBDropdownItem onClick={() => onNavigate(routes.work.findJobs.myJobAlerts)}>{t("NAVBAR.WORK.FIND_JOBS.MY_JOB_ALERTS")}</MDBDropdownItem>

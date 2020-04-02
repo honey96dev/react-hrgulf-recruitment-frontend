@@ -94,6 +94,20 @@ export default {
       signInWithFacebook: "work/auth/sign-in-with-facebook",
     },
     findJobs: {
+      findJobs: {
+        listCountries: "work/find-jobs/find-jobs/list-countries",
+        listCities: "work/find-jobs/find-jobs/list-cities",
+        listJobRoles: "work/find-jobs/find-jobs/list-job-roles",
+        listSpecialties: "work/find-jobs/find-jobs/list-specialties",
+        listIndustries: "work/find-jobs/find-jobs/list-industries",
+        listCareerLevels: "work/find-jobs/find-jobs/list-career-levels",
+        listEmploymentTypes: "work/find-jobs/find-jobs/list-employment-types",
+        listGenders: "work/find-jobs/find-jobs/list-genders",
+        listCompanyTypes: "work/find-jobs/find-jobs/list-company-types",
+        listCompanyNames: "work/find-jobs/find-jobs/list-company-names",
+        listDateModified: "work/find-jobs/find-jobs/list-date-modified",
+        list: "work/find-jobs/find-jobs/list",
+      },
       jobsByRole: {
         listRoles: "work/find-jobs/jobs-by-role/list-roles",
         list: "work/find-jobs/jobs-by-role/list",

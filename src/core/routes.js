@@ -112,7 +112,10 @@ export const routes = {
     },
     findJobs: {
       root: "/work/find-jobs",
-      findJobs: "/work/find-jobs/work/find-jobs",
+      findJobs: {
+        root: "/work/find-jobs/work/find-jobs",
+        main: "/work/find-jobs/work/find-jobs",
+      },
       recommendedJobs: "/work/find-jobs/recommended-jobs",
       savedJobs: "/work/find-jobs/saved-jobs",
       myJobAlerts: "/work/find-jobs/my-job-alerts",

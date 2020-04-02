@@ -12,6 +12,7 @@ import BackToTop from "components/BackToTop";
 
 import "./RootPage.scss";
 
+const FindJobsPage = lazy(() => import("./find-jobs/RootPage"));
 const JobsByRolePage = lazy(() => import("./jobs-by-role/RootPage"));
 const JobsByLocationPage = lazy(() => import("./jobs-by-location/RootPage"));
 const JobsBySectorPage = lazy(() => import("./jobs-by-sector/RootPage"));
@@ -23,6 +24,7 @@ export default (props) => {
       <Navbar type={ACCOUNT.TYPE.WORK}/>
       <MDBContainer className="section">
         <Switch>
+          <Route path={routes.work.findJobs.findJobs.root} component={FindJobsPage}/>
           <Route path={routes.work.findJobs.jobsByRole.root} component={JobsByRolePage}/>
           <Route path={routes.work.findJobs.jobsByLocation.root} component={JobsByLocationPage}/>
           <Route path={routes.work.findJobs.jobsBySector.root} component={JobsBySectorPage}/>

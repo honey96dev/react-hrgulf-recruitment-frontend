@@ -9,15 +9,26 @@ export const cancelRequest = () => {
   return cancel;
 };
 
-const getQueryString = (params) => {
-  if (!params)
+export const getQueryString = (params, filterEmpty) => {
+  console.log(params)
+  let esc = encodeURIComponent;
+  if (filterEmpty === true) {
+    const tmp = {};
+    Object.keys(params).map(key => {
+      if (!!params[key] && esc(params[key]) !== "") {
+        tmp[key] = params[key];
+      }
+    });
+    params = tmp;
+  }
+
+  if (!params || !Object.keys(params).length)
     return "";
 
-  let esc = encodeURIComponent;
   return (
     "?" +
     Object.keys(params)
-      .map(k => esc(k) + "=" + esc(params[k]))
+      .map(key => esc(key) + "=" + esc(params[key]))
       .join("&")
   );
 };
