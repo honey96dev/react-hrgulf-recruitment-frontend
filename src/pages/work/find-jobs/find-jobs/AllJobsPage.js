@@ -4,8 +4,9 @@ import {useTranslation} from "react-i18next";
 import {animateScroll as scroll} from "react-scroll";
 import {Helmet} from "react-helmet";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
+import {Fade} from "react-reveal"
 
-import {DELAY, EFFECT, LAYOUT, RESULT} from "core/globals";
+import {DELAY, EFFECT, LAYOUT, PAGINATION, RESULT} from "core/globals";
 import routes from "core/routes";
 import Loading from "components/Loading";
 import ErrorNoData from "components/ErrorNoData";
@@ -17,6 +18,7 @@ import ListView from "./partial/ListView";
 import "./AllJobsPage.scss";
 import {getQueryString} from "apis/fetch";
 import useDebounce from "helpers/useDebounce";
+import Pagination from "components/Pagination";
 
 export default ({history}) => {
   const {t} = useTranslation();
@@ -34,6 +36,7 @@ export default ({history}) => {
     companyTypes: params.get("companyTypes") || "",
     companyNames: params.get("companyNames") || "",
     dateModified: params.get("dateModified") || "",
+    page: params.get("page") || "1",
   };
   const filter = {
     countries: urlSearch.countries.split(","),
@@ -47,6 +50,7 @@ export default ({history}) => {
     companyTypes: urlSearch.companyTypes.split(","),
     companyNames: urlSearch.companyNames.split(","),
     dateModified: urlSearch.dateModified.split(","),
+    page: parseInt(urlSearch.page),
   };
 
   const [loading, setLoading] = useState(false);
@@ -63,9 +67,16 @@ export default ({history}) => {
   const [companyNames, setCompanyNames] = useState([]);
   const [dateModified, setDateModified] = useState([]);
   const [items, setItems] = useState([]);
+  const [count, setCount] = useState(0);
+  const [pageCount, setPageCount] = useState(0);
 
   const pageTitle = t("NAVBAR.WORK.FIND_JOBS.FIND_JOBS");
   const addUrl = routes.hire.workplace.letters.add;
+
+  const pagination = {
+    begin: PAGINATION.PAGE_SIZE * (filter.page - 1) + 1,
+    end: PAGINATION.PAGE_SIZE * filter.page > count ? count : PAGINATION.PAGE_SIZE * filter.page,
+  };
 
   const loadCountries = () => {
     Service.listCountries(urlSearch)
@@ -224,18 +235,24 @@ export default ({history}) => {
   const loadData = () => {
     setLoading(true);
     setAlert({});
-    Service.list(urlSearch)
+    Service.list({...urlSearch, page: parseInt(urlSearch.page)})
       .then(res => {
         if (res.result === RESULT.SUCCESS) {
           setItems(res.data);
+          setCount(res.count);
+          setPageCount(res.pageCount);
         } else {
           setItems([]);
+          setCount(0);
+          setPageCount(0);
           toast.error(res.message);
         }
         setLoading(false);
       })
       .catch(err => {
         setItems([]);
+        setCount(0);
+        setPageCount(0);
         toast.error(t("COMMON.ERROR.UNKNOWN_SERVER_ERROR"));
         setLoading(false);
       });
@@ -243,6 +260,10 @@ export default ({history}) => {
 
   const handleFilterChange = filter => {
     history.push(`${routes.work.findJobs.findJobs.main}${getQueryString(filter, true)}`);
+  };
+
+  const handlePageChange = page => {
+    history.push(`${routes.work.findJobs.findJobs.main}${getQueryString({...filter, page}, true)}`);
   };
 
   useEffect(e => {
@@ -283,25 +304,36 @@ export default ({history}) => {
             </CSSTransition>
           </TransitionGroup>
         </MDBCol>}
-        <MDBCol md="4">
+        <MDBCol md="4" className="order-1 order-md-0">
           <Filter countries={countries} cities={cities} jobRoles={jobRoles} specialties={specialties} industries={industries} careerLevels={careerLevels} employmentTypes={employmentTypes} genders={genders} companyTypes={companyTypes} companyNames={companyNames} dateModified={dateModified} filter={filter} onChangeFilter={handleFilterChange} />
         </MDBCol>
-        <MDBCol md="8">
-          <TransitionGroup>
-            <CSSTransition
-              key={"CSSTransition"}
-              timeout={{enter: EFFECT.TRANSITION_TIME, exit: 0}}
-              classNames="fade-transition"
-            >
+        <MDBCol md="8" className="order-0 order-md-1">
+          {/*<TransitionGroup>*/}
+          {/*  <CSSTransition*/}
+          {/*    key={"CSSTransition"}*/}
+          {/*    timeout={{enter: EFFECT.TRANSITION_TIME, exit: 0}}*/}
+          {/*    classNames="fade-transition"*/}
+          {/*  >*/}
               <div>
                 {!!loading && <Loading style={{height: LAYOUT.LISTVIEW_HEIGHT}}/>}
-                {!loading && !items.length && <ErrorNoData/>}
+                {!loading && !items.length && <Fade><ErrorNoData/></Fade>}
                 {!loading && !!items.length && <Fragment>
-                  <ListView items={items} detailLink={addUrl} />
+                  <Fade>
+                    <div className="my-4 text-center">
+                      <Pagination circle current={filter.page} pageCount={pageCount} onChange={handlePageChange}/>
+                    </div>
+                    <div className="text-left">
+                      {t("WORK.FIND_JOBS.FIND_JOBS.SHOWING_RANGE", {...pagination, total: count})}
+                    </div>
+                    <ListView items={items} detailLink={addUrl} />
+                    <div className="my-4 text-center">
+                      <Pagination circle current={filter.page} pageCount={pageCount} onChange={handlePageChange}/>
+                    </div>
+                  </Fade>
                 </Fragment>}
               </div>
-            </CSSTransition>
-          </TransitionGroup>
+            {/*</CSSTransition>*/}
+          {/*</TransitionGroup>*/}
         </MDBCol>
       </MDBRow>
     </Fragment>

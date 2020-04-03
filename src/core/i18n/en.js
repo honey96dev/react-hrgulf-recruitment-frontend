@@ -548,6 +548,7 @@ export default {
           COMPANY_NAME: "Company Name",
           DATE_MODIFIED: "Date Modified",
         },
+        SHOWING_RANGE: "{{total}} Jobs Found: Showing {{begin}} - {{end}}",
       },
     },
     MY_CV: {

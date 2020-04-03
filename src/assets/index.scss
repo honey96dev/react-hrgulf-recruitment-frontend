@@ -297,6 +297,10 @@ textarea.form-control {
   font-size: 1.75rem;
 }
 
+.h4-responsive {
+  font-size: 1.5rem;
+}
+
 .h5-responsive {
   font-size: 1.15rem;
 }
@@ -310,6 +314,10 @@ textarea.form-control {
 @media (max-width: $screen-breakpoint-md) {
   .h3-responsive {
     font-size: 1.5rem;
+  }
+
+  .h4-responsive {
+    font-size: 1.25rem;
   }
 
   .h5-responsive {
@@ -385,16 +393,6 @@ textarea.form-control {
   max-width: $width;
 }
 
-.h4-responsive {
-  font-size: 125%;
-}
-
-@media (min-width: 1200px) {
-  .h4-responsive {
-    font-size: 140%;
-  }
-}
-
 .max-height-200 {
   max-height: 200px;
 }
@@ -455,7 +453,7 @@ textarea.form-control {
 
 .list-item-inner-wrapper {
   height: 100%;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .rtl-content {

@@ -27,7 +27,7 @@ export default () => {
   const [keyword, setKeyword] = useState("");
 
   const pageTitle = t("NAVBAR.WORK.FIND_JOBS.JOBS_BY_ROLE");
-  const addUrl = routes.hire.workplace.letters.add;
+  const addUrl = routes.work.findJobs.findJobs.main;
 
   const loadData = () => {
     setLoading(true);

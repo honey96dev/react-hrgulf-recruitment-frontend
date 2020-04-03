@@ -1,8 +1,9 @@
 import React from "react";
-import {MDBBtn, MDBCardBody, MDBCol, MDBIcon, MDBMask, MDBView} from "mdbreact";
+import {MDBCardBody, MDBCol, MDBMask, MDBView} from "mdbreact";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import {Base64} from "js-base64";
+
+import {getQueryString} from "apis/fetch";
 
 import "./ListItem.scss";
 
@@ -12,9 +13,9 @@ export default ({data, detailLink}) => {
   const lang = t("CODE");
 
   const {id, count} = data;
-  const detailLinkParam = Base64.encode(JSON.stringify({
-    id,
-  }));
+  const detailLinkParam = getQueryString({
+    countries: id
+  }, true);
 
   const payload = () => (
     <MDBCol md="4" lg="3" xl="2" className="mb-3 mb-md-4">
@@ -26,7 +27,7 @@ export default ({data, detailLink}) => {
             <div className="text-center mb-sm-1 mb-md-2 text-primary"><span className="h5-responsive">{data[`country_${lang}`]}</span></div>
           </div>
         </MDBCardBody>
-        <Link to={`${detailLink}/${detailLinkParam}`} className="text-body">
+        <Link to={`${detailLink}${detailLinkParam}`} className="text-body">
         <MDBMask className="flex-center" overlay="grey-strong">
         </MDBMask>
         </Link>

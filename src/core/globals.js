@@ -220,6 +220,7 @@ export const QUESTIONNAIRE = {
 export const PAGINATION = {
   WIDTH: 10,
   WIDTH_MOBILE: 6,
+  PAGE_SIZE: 10,
 };
 
 export const RESULT = {

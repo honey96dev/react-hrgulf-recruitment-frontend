@@ -24,7 +24,7 @@ export default () => {
   const [items, setItems] = useState([]);
 
   const pageTitle = t("NAVBAR.WORK.FIND_JOBS.JOBS_BY_LOCATION");
-  const addUrl = routes.hire.workplace.letters.add;
+  const addUrl = routes.work.findJobs.findJobs.main;
 
   const loadData = () => {
     setLoading(true);
