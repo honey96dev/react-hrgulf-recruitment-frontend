@@ -6,22 +6,24 @@ import {Helmet} from "react-helmet";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {Fade} from "react-reveal"
 
-import {DELAY, EFFECT, LAYOUT, PAGINATION, RESULT} from "core/globals";
+import {EFFECT, LAYOUT, PAGINATION, RESULT} from "core/globals";
 import routes from "core/routes";
+import {getQueryString} from "apis/fetch";
 import Loading from "components/Loading";
 import ErrorNoData from "components/ErrorNoData";
 import toast from "components/MyToast";
+import Pagination from "components/Pagination";
 import Service from "services/work/find-jobs/FindJobsService";
 import Filter from "./partial/Filter";
 import ListView from "./partial/ListView";
+import ApplyModal from "./partial/ApplyModal";
 
 import "./AllJobsPage.scss";
-import {getQueryString} from "apis/fetch";
-import useDebounce from "helpers/useDebounce";
-import Pagination from "components/Pagination";
+import {useSelector} from "react-redux";
 
 export default ({history}) => {
   const {t} = useTranslation();
+  const {auth: {work}} = useSelector(state => state);
 
   const params = new URLSearchParams(history.location.search);
   const urlSearch = {
@@ -69,6 +71,8 @@ export default ({history}) => {
   const [items, setItems] = useState([]);
   const [count, setCount] = useState(0);
   const [pageCount, setPageCount] = useState(0);
+  const [modal, setModal] = useState({});
+  const [currentItem, setCurrentItem] = useState({});
 
   const pageTitle = t("NAVBAR.WORK.FIND_JOBS.FIND_JOBS");
   const addUrl = routes.hire.workplace.letters.add;
@@ -235,7 +239,7 @@ export default ({history}) => {
   const loadData = () => {
     setLoading(true);
     setAlert({});
-    Service.list({...urlSearch, page: parseInt(urlSearch.page)})
+    Service.list({...urlSearch, page: parseInt(urlSearch.page), workId: work.id})
       .then(res => {
         if (res.result === RESULT.SUCCESS) {
           setItems(res.data);
@@ -258,12 +262,44 @@ export default ({history}) => {
       });
   };
 
+  const toggleModal = e => {
+    setModal({
+      ...modal,
+      show: false,
+    });
+  };
+
   const handleFilterChange = filter => {
     history.push(`${routes.work.findJobs.findJobs.main}${getQueryString(filter, true)}`);
   };
 
   const handlePageChange = page => {
     history.push(`${routes.work.findJobs.findJobs.main}${getQueryString({...filter, page}, true)}`);
+  };
+
+  const handleItemClicked = item => {
+    setModal({
+      show: true,
+      title: item.title,
+    });
+    setCurrentItem(item);
+  };
+
+  const handleApply = item => {
+    console.log(item);
+    setModal({...modal, isSubmitting: true});
+    Service.apply({workId: work.id, jobId: item.id})
+      .then(res => {
+        if (res.result === RESULT.SUCCESS) {
+        } else {
+          toast.error(res.message);
+        }
+        setModal({...modal, isSubmitting: false});
+      })
+      .catch(err => {
+        toast.error(t("COMMON.ERROR.UNKNOWN_SERVER_ERROR"));
+        setModal({...modal, isSubmitting: false});
+      });
   };
 
   useEffect(e => {
@@ -325,7 +361,7 @@ export default ({history}) => {
                     <div className="text-left">
                       {t("WORK.FIND_JOBS.FIND_JOBS.SHOWING_RANGE", {...pagination, total: count})}
                     </div>
-                    <ListView items={items} detailLink={addUrl} />
+                    <ListView items={items} detailLink={addUrl} onItemClicked={handleItemClicked} />
                     <div className="my-4 text-center">
                       <Pagination circle current={filter.page} pageCount={pageCount} onChange={handlePageChange}/>
                     </div>
@@ -336,6 +372,7 @@ export default ({history}) => {
           {/*</TransitionGroup>*/}
         </MDBCol>
       </MDBRow>
+      <ApplyModal modal={modal} data={currentItem} onApply={handleApply} onClose={toggleModal}/>
     </Fragment>
   );
 

@@ -134,4 +134,15 @@ export default {
         });
     });
   },
+
+  apply: (params) => {
+    return new Promise((resolve, reject) => {
+      fetch(POST, apis.work.findJobs.findJobs.apply, params)
+        .then(res => {
+          resolve(res);
+        }, err => {
+          reject(err);
+        });
+    });
+  },
 };

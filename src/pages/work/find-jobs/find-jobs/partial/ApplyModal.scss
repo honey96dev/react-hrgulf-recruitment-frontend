@@ -1,0 +1,9 @@
+@import "../../../../../assets/consts";
+
+$job-information-wrapper-gutter: 400px;
+
+.job-information-wrapper {
+  max-height: calc(100vh - #{$job-information-wrapper-gutter});
+  overflow-x: hidden;
+  overflow-y: auto;
+}

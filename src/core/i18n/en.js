@@ -74,6 +74,7 @@ export default {
       NEXT: "Next",
       ACTIVATE: "Activate",
       DEACTIVATE: "Deactivate",
+      APPLY: "Apply",
       SWITCH_TO_WORK: "Job seeking?",
       SWITCH_TO_HIRE: "Hiring?",
     },
@@ -534,6 +535,25 @@ export default {
       },
     },
     FIND_JOBS: {
+      FIELDS: {
+        CANDIDATE_TYPE: "Candidate Type",
+        TITLE: "Job Title",
+        ROLE: "Job Role",
+        SUBROLE: "Job Subrole",
+        SECTOR_N_INDUSTRY: "Company Sector & Industry",
+        SECTOR: "Company Sector",
+        INDUSTRY: "Company Industry",
+        LOCATION: "Job Location",
+        COUNTRY: "Country",
+        CITY: "City",
+        EMPLOYMENT_TYPE: "Employment Type",
+        SALARY_RANGE: "Monthly Salary Range",
+        VACANCIES_COUNT: "Number of Vacancies",
+        DESCRIPTION: "Job Description",
+        SKILLS: "Desired Skills",
+        DETAILS: "Job Details",
+        COMPANY_TYPE: "Company Type",
+      },
       FIND_JOBS: {
         FILTER: {
           COUNTRY: "Country",
@@ -549,6 +569,7 @@ export default {
           DATE_MODIFIED: "Date Modified",
         },
         SHOWING_RANGE: "{{total}} Jobs Found: Showing {{begin}} - {{end}}",
+        DATE_POSTED: "Date Posted",
       },
     },
     MY_CV: {

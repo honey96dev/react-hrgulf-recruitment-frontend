@@ -98,21 +98,21 @@ const HireNavbar = (props) => {
               </MDBDropdownMenu>
             </MDBDropdown>
           </MDBNavItem>
-          <MDBNavItem active={pathname.startsWith(routes.hire.hrCommunity.root)}>
-            <MDBDropdown>
-              <MDBDropdownToggle nav caret>
-                <span className="mr-2">{t("NAVBAR.HIRE.HR_COMMUNITY.ROOT")}</span>
-              </MDBDropdownToggle>
-              <MDBDropdownMenu className="text-left">
-                <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.newsFeed)}>{t("NAVBAR.HIRE.HR_COMMUNITY.NEWS_FEED")}</MDBDropdownItem>
-                <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.myQuestions)}>{t("NAVBAR.HIRE.HR_COMMUNITY.MY_QUESTIONS")}</MDBDropdownItem>
-                <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.myAnswers)}>{t("NAVBAR.HIRE.HR_COMMUNITY.MY_ANSWERS")}</MDBDropdownItem>
-                <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.myNetwork)}>{t("NAVBAR.HIRE.HR_COMMUNITY.MY_NETWORK")}</MDBDropdownItem>
-                <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.findPeople)}>{t("NAVBAR.HIRE.HR_COMMUNITY.FIND_PEOPLE")}</MDBDropdownItem>
-                <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.myRank)}>{t("NAVBAR.HIRE.HR_COMMUNITY.MY_RANK")}</MDBDropdownItem>
-              </MDBDropdownMenu>
-            </MDBDropdown>
-          </MDBNavItem>
+          {/*<MDBNavItem active={pathname.startsWith(routes.hire.hrCommunity.root)}>*/}
+          {/*  <MDBDropdown>*/}
+          {/*    <MDBDropdownToggle nav caret>*/}
+          {/*      <span className="mr-2">{t("NAVBAR.HIRE.HR_COMMUNITY.ROOT")}</span>*/}
+          {/*    </MDBDropdownToggle>*/}
+          {/*    <MDBDropdownMenu className="text-left">*/}
+          {/*      <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.newsFeed)}>{t("NAVBAR.HIRE.HR_COMMUNITY.NEWS_FEED")}</MDBDropdownItem>*/}
+          {/*      <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.myQuestions)}>{t("NAVBAR.HIRE.HR_COMMUNITY.MY_QUESTIONS")}</MDBDropdownItem>*/}
+          {/*      <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.myAnswers)}>{t("NAVBAR.HIRE.HR_COMMUNITY.MY_ANSWERS")}</MDBDropdownItem>*/}
+          {/*      <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.myNetwork)}>{t("NAVBAR.HIRE.HR_COMMUNITY.MY_NETWORK")}</MDBDropdownItem>*/}
+          {/*      <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.findPeople)}>{t("NAVBAR.HIRE.HR_COMMUNITY.FIND_PEOPLE")}</MDBDropdownItem>*/}
+          {/*      <MDBDropdownItem onClick={() => onNavigate(routes.hire.hrCommunity.myRank)}>{t("NAVBAR.HIRE.HR_COMMUNITY.MY_RANK")}</MDBDropdownItem>*/}
+          {/*    </MDBDropdownMenu>*/}
+          {/*  </MDBDropdown>*/}
+          {/*</MDBNavItem>*/}
           <MDBNavItem active={pathname.startsWith(routes.hire.contactUs.root)}>
             <MDBNavLink to={routes.hire.contactUs.main}>{t("NAVBAR.HIRE.CONTACT_US.MAIN")}</MDBNavLink>
           </MDBNavItem>

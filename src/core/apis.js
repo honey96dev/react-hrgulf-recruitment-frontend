@@ -107,6 +107,7 @@ export default {
         listCompanyNames: "work/find-jobs/find-jobs/list-company-names",
         listDateModified: "work/find-jobs/find-jobs/list-date-modified",
         list: "work/find-jobs/find-jobs/list",
+        apply: "work/find-jobs/find-jobs/apply",
       },
       jobsByRole: {
         listRoles: "work/find-jobs/jobs-by-role/list-roles",

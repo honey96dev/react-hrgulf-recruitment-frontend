@@ -1,13 +1,22 @@
 @import "../../../../assets/consts";
 
-$joblist-item-height: 180px;
+$joblist-item-height: 130px;
 
 .job-item-wrapper {
   //height: calc(#{$joblist-item-height} * 0.8);
 }
 
+.job-item-inner-wrapper {
+  height: $joblist-item-height;
+  overflow: hidden;
+}
+
 @media (min-width: $screen-breakpoint-md) {
-  .job-item-wrapper {
+  //.job-item-wrapper {
+  //  height: $joblist-item-height;
+  //}
+
+  .job-item-inner-wrapper {
     height: $joblist-item-height;
   }
 }
